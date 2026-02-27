@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student
+{
+private:
+    int rollNumber;
+    string name;
+    float marks;
+
+public:
+    Student()
+    {
+        rollNumber = 0;
+        name = "";
+        marks = 0.0;
+    }
+    void input()
+    {
+        cout << "Enter Roll Number: ";
+        cin >> rollNumber;
+        cin.ignore();
+        cout << "Enter Name: ";
+        getline(cin, name);
+        cout << "Enter Marks: ";
+        cin >> marks;
+    }
+    void display()
+    {
+        cout << rollNumber << "\t" << name << "\t" << marks << endl;
+    }
+    ~Student()
+    {
+        cout << "Student object with Roll No " << rollNumber << " is destroyed." << endl;
+    }
+};
+
+int main()
+{
+    int n;
+    cout << "Enter number of students: ";
+    cin >> n;
+    Student *students = new Student[n];
+    for (int i = 0; i < n; i++)
+    {
+        cout << "\nEnter details of Student " << i + 1 << endl;
+        students[i].input();
+    }
+
+    cout << "\nRollNo\tName\tMarks\n";
+    for (int i = 0; i < n; i++)
+    {
+        students[i].display();
+    }
+    delete[] students;
+    return 0;
+}
